@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 
 
-#code
+#code written here for example
 
 class Todo(db.Model):
   id = db.Column(db.Integer, primary_key=True)
