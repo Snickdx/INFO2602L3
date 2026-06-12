@@ -1,13 +1,13 @@
 modules = ["python-3.10", "nix"]
 
 hidden = [".pythonlibs"]
-run = "flask run -h 0.0.0.0 -p 8080 --reload"
+run = "gunicorn --bind 0.0.0.0:8080 --reload app:app"
 
 [nix]
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "flask run -h 0.0.0.0 -p 8080 --reload"]
+run = ["sh", "-c", "gunicorn --bind 0.0.0.0:8080 app:app"]
 deploymentTarget = "cloudrun"
 
 [[ports]]
