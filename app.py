@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from functools import wraps
 from flask_cors import CORS
-from asgiref.wsgi import WsgiToAsgi
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import (
     JWTManager,
@@ -28,8 +27,6 @@ app.config["JWT_COOKIE_CSRF_PROTECT"] = False
 db.init_app(app)
 app.app_context().push()
 CORS(app)
-
-asgi_app = WsgiToAsgi(app)
 
 jwt = JWTManager(app)
 

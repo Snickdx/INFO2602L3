@@ -1,13 +1,13 @@
 modules = ["python-3.10", "nix"]
 
 hidden = [".pythonlibs"]
-run = "uvicorn app:asgi_app --host 0.0.0.0 --port 8080 --reload"
+run = "gunicorn --bind 0.0.0.0:8080 --reload app:app"
 
 [nix]
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "uvicorn app:asgi_app --host 0.0.0.0 --port 8080"]
+run = ["sh", "-c", "gunicorn --bind 0.0.0.0:8080 app:app"]
 deploymentTarget = "cloudrun"
 
 [[ports]]
